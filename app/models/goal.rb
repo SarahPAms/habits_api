@@ -1,3 +1,3 @@
 class Goal < ApplicationRecord
-  belongs_to :habits
+  belongs_to :habit
 end
