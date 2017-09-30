@@ -1,5 +1,6 @@
 class Api::HabitsController < ApplicationController
     skip_before_filter :verify_authenticity_token
+    before_action :set_goal
 
     def index
       render status: 200, json: {
@@ -31,7 +32,11 @@ class Api::HabitsController < ApplicationController
     end
 
     private
+      def set_goal
+        @goal = Goal.find(params[:goal_id])
+      end
+
       def habit_params
-        params.require(:habit).permit(:title, :score, :goal_id)
+        params.require(:habit).permit(:title, :score, :frequency_id)
       end
 end
